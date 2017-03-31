@@ -260,6 +260,9 @@ class writeexcel_workbook extends writeexcel_biffwriter {
 	# Returns: reference to a worksheet object
 	#
 	function &addworksheet($name='') {
+		if (!is_string($name)) { # cast all names to strings to prevent comparison errors below
+			$name = "$name";
+		}
 
 		# Check that sheetname is <= 31 chars (Excel limit).
 		if (strlen($name) > 31) {
